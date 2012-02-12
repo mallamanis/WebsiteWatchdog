@@ -10,5 +10,5 @@ each check is a string that must exist in the root document of the domain
 Still a lot TODO:
 * Run as a daemon instead of cron
 * do not resend emails for repeated failures
-* more complex tests & non-root documents check
+* more complex tests (e.g. regex)
 * machine-learning for automatic random website checks

@@ -4,7 +4,7 @@ import csv
 import httplib
 import time
 import smtplib
-from urlparse
+import urlparse
 from email.mime.text import MIMEText
 
 class WebsiteWatchdog(object):

@@ -24,6 +24,8 @@ class WebsiteWatchdog(object):
     
     sites={}
     for row in csv_file:
+      if len(row) == 0:
+        continue
       site_url = row[0]
       sites[site_url] = {"url":site_url}
       

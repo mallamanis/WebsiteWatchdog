@@ -4,6 +4,7 @@ import csv
 import httplib
 import time
 import smtplib
+from urlparse
 from email.mime.text import MIMEText
 
 class WebsiteWatchdog(object):
@@ -52,8 +53,9 @@ class WebsiteWatchdog(object):
     and contents of page
     :return: a dict {error: True/False, reason:"some reason"}
     """
-    connection = httplib.HTTPConnection(url)
-    connection.request("GET", "/") #TODO: More complex in the future?
+    parse = urlparse.urlparse(url)
+    connection = httplib.HTTPConnection(parse.netloc)
+    connection.request("GET", parse.path) #TODO: More complex in the future?
     response = connection.getresponse()
     
     if response.status != 200:

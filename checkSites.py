@@ -55,7 +55,14 @@ class WebsiteWatchdog(object):
     """
     parse = urlparse.urlparse(url)
     connection = httplib.HTTPConnection(parse.netloc)
-    connection.request("GET", parse.path) #TODO: More complex in the future?
+    success = False
+    while not success:
+      try:
+        connection.request("GET", parse.path) #TODO: More complex in the future?
+        sucess = True
+      except:
+        pass
+        
     response = connection.getresponse()
     
     if response.status != 200:

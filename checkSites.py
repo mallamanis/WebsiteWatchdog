@@ -54,14 +54,15 @@ class WebsiteWatchdog(object):
     :return: a dict {error: True/False, reason:"some reason"}
     """
     success = False
+    parse = urlparse.urlparse(url)
+    connection = httplib.HTTPConnection(parse.netloc)
+    
     while not success:
-      try:
-        parse = urlparse.urlparse(url)
-        connection = httplib.HTTPConnection(parse.netloc)
+      try:        
         connection.request("GET", parse.path) #TODO: More complex in the future?
         sucess = True
       except:
-        pass
+        connection = httplib.HTTPConnection(parse.netloc)
         
     response = connection.getresponse()
     

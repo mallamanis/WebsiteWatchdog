@@ -19,7 +19,7 @@ class WebsiteWatchdog(object):
     """
     Read from config file the sites and the checks to perform
     :param filename: the filename of the config file
-    :return: a dict containing {siteUrl:[checks1, check2,...]}
+    :return: a dict containing {siteUrl:[check1, check2,...]}
     """
     csv_file = csv.reader(open(filename, 'r'), delimiter=";")
     
@@ -39,7 +39,7 @@ class WebsiteWatchdog(object):
     """
     Check the status for each site in sites_to_check
     :param sites_to_check: the sites to check as a dict with the
-    approriate checks {siteUrl:[checks1, check2,...]}
+    approriate checks {siteUrl:[check1, check2,...]}
     :return: a dict {siteUrl:{error:True/False, reason:"a reason",...},...}
     """
     status = {}

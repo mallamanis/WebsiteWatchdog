@@ -6,13 +6,14 @@ import time
 import smtplib
 import urlparse
 import ConfigParser
+import os
 from email.mime.text import MIMEText
 
 class WebsiteWatchdog(object):
   
   def __init__(self):
     config = ConfigParser.ConfigParser()
-    config.readfp(open('watchdogConfig.cfg'))
+    config.readfp(open(__file__[:len(__file__)-len("checkSites.py")]+'watchdogConfig.cfg'))
     
     self.smtp_server = config.get("Email Notifications","smtp_server")
     self.from_email = config.get("Email Notifications","from_email")

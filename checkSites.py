@@ -5,17 +5,24 @@ import httplib
 import time
 import smtplib
 import urlparse
+import ConfigParser
 from email.mime.text import MIMEText
 
 class WebsiteWatchdog(object):
   
-  smtp_server = 'smtp.example.com'
-  from_email = "watchdog@domain.com"
-  to_email = "yourName@domain.com"
+  def __init__(self):
+    config = ConfigParser.ConfigParser()
+    config.readfp(open('watchdogConfig.cfg'))
+    
+    self.smtp_server = config.get("Email Notifications","smtp_server")
+    self.from_email = config.get("Email Notifications","from_email")
+    self.to_email = config.get("Email Notifications","to_email")
+    
+    self.secs_between_retries = config.getint("Watchdog Configuration","secs_between_retries")
+    self.retries = config.getint("Watchdog Configuration","retries")
   
-  config_file_path = '/path/to/sites'
-  secs_between_retries = 5
-  retries = 10
+    self.config_file_path = config.get("Watchdog Configuration","config_file_path")
+  
   
   def get_site_to_check(self, filename):
     """

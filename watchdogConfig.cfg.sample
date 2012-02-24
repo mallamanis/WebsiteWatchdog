@@ -1,0 +1,9 @@
+[Email Notifications]
+smtp_server=smtp.example.com
+from_email=watchdog@domain.com
+to_email=yourName@domain.com
+
+[Watchdog Configuration]
+secs_between_retries=5
+retries=10
+config_file_path=/path/to/sites

@@ -14,6 +14,7 @@ class WebsiteWatchdog(object):
   to_email = "yourName@domain.com"
   
   config_file_path = '/path/to/sites'
+  secs_between_retries = 5
   retries = 10
   
   def get_site_to_check(self, filename):
@@ -66,6 +67,7 @@ class WebsiteWatchdog(object):
       except:
         connection = httplib.HTTPConnection(parse.netloc)
         retry_count += 1
+        time.sleep(self.secs_between_retries)
 
     if not success:
       return {"error":True, "reason":"Failed to contact website"}

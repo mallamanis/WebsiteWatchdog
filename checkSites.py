@@ -65,7 +65,7 @@ class WebsiteWatchdog(object):
     """
     success = False
     parse = urlparse.urlparse(url)
-    connection = httplib.HTTPConnection(parse.netloc)
+    connection = httplib.HTTPConnection(parse.netloc, timeout=30)
     retry_count = 0    
 
     while not success and retry_count < self.retries:
